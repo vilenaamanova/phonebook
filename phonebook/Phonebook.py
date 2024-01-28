@@ -8,7 +8,8 @@
 from phonebook.Contact import Contact
 
 class Phonebook:
-    def __init__(self):
+    def __init__(self, tag):
+        self.tag = tag
         self.contacts = []
 
     def create_contact(self, contact):

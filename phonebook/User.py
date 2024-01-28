@@ -9,6 +9,7 @@
 
 from phonebook.Phonebook import Phonebook
 
+
 class User:
     def __init__(self, login, first_name, last_name):
         self.login = login
@@ -43,15 +44,13 @@ class User:
             raise ValueError("friend is not of class User")
         self.friends.remove(friend)
 
-    def create_phonebook(self, tag, pb_name):
-        self.phonebooks[tag] = pb_name
+    def create_phonebook(self, tag):
+        self.phonebooks[tag] = Phonebook(tag)
 
     def share_phonebook(self, friend, tag):
         if not isinstance(friend, User):
             raise ValueError("friend is not of class User")
         if friend in self.friends:
-            for i in range(len(self.phonebooks.get(tag).contacts)):
-                print(self.phonebooks.get(tag).contacts[i].user.login)
-                print(self.phonebooks.get(tag).contacts[i].country_code + self.phonebooks.get(tag).contacts[i].phone_num)
+            friend.phonebooks[tag] = self.phonebooks[tag]
         else:
             print(f"Добавьте {friend.last_name} {friend.first_name} в друзья, чтобы поделится своей телефонной книжкой")
